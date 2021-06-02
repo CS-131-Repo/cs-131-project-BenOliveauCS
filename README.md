@@ -6,11 +6,11 @@
 
 ## FAILURE TO FILL OUT THE INFORMATION BELOW CORRECTLY WILL CAUSE POINTS TO BE DEDUCTED FROM YOUR ASSIGNMENT.
 
-## Student Name  : 
+## Student Name  : Ben Oliveau
 
-## Student ID    : 
+## Student ID    : 900227337
 
-## Student Email : 
+## Student Email : oliveabm3158@student.laccd.edu
 
 ## Purpose of Repository
 

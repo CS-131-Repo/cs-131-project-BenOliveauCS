@@ -1,0 +1,40 @@
+E(F_p): y^2 = (x^3 + ax + b) mod p
+
+Using secp256k1
+p = 0xFFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE FFFFFC2F
+a = 0x00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+b = 0x00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000007
+G = 0x04 79BE667E F9DCBBAC 55A06295 CE870B07 029BFCDB 2DCE28D9 59F2815B 16F81798
+	     483ADA77 26A3C465 5DA4FBFC 0E1108A8 FD17B448 A6855419 9C47D08F FB10D4B8
+n = 0xFFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141
+h = 0x01
+
+z = message hash
+k = cryptographically secure random nonce 1 <= k <= n - 1
+d = private key b58("80" + SHA(#) + SHA(SHA(#)).substr(0, 8)) where # is a cryptographically secure random number
+Q = public key = G*d
+
+(x, y) = G*k
+r = x mod n
+s = (z + r*d)/k mod n
+signature = "r" + "s"
+
+Verify:
+u1 = z/s mod n
+u2 = r/s mod n
+(x, y) = u1*G + u2*Q
+
+Base 58: 0-9, A-Z, a-z without 0, I, O, l
+
+Elliptic addition (G + Q): 
+-Calculate line intersecting both points
+-Find 3rd point of intersection
+-Reflect across x axis
+-If G = Q use line tangent to G
+
+Elliptic multiplication (xG):
+-G + G + G + G + G + G... 
+-2G + G + G + G + G...
+-3G + G + G + G...
+-4G + G + G...
+-5G + G...
